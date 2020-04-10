@@ -1,0 +1,35 @@
+﻿@model IEnumerable<emarket.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Products</h2>
+
+<p>
+    @Html.ActionLink("Add Product", "Create")
+</p>
+
+<div class="md-form active-pink active-pink-2 mb-3 mt-0">
+    <input class="form-control" type="text" placeholder="Filter" aria-label="Search">
+</div>
+
+<hr>
+
+<div class="container">
+    <div class="row">
+        @foreach (var product in Model)
+        {
+        <div class="col-md-3">
+            <div class="item">
+                <h4>@product.name</h4>
+                <p class="text-primary">$@product.price</p><img src="@product.image" class="img-fluid">
+               <div class="overlay d-flex align-items-center justify-content-center">
+                    @Html.ActionLink("Details", "Details", new { id = product.id } ,  htmlAttributes : new { @class="btn btn-primary" })
+               </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
